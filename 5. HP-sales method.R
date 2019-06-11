@@ -6,6 +6,7 @@ library(tbart)
 library(scales)
 library(ggplot2)
 library(sf)
+library(repmis)
 
 ## Leeds case
 # Load Data
