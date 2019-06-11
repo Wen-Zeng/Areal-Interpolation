@@ -13,14 +13,10 @@ library(sf)
 library(car)
 library(Rmisc)
 
-
-setwd("E:/Work with Lex/analysis/error/Error")
-Cumsum_LSOA_to_OA <- read.csv("Cumsum_LSOA_to_OA.csv",header = TRUE)
-Cumsum_MSOA_to_LSOA <- read.csv("Cumsum_MSOA_to_LSOA.csv",header = TRUE)
-Cumsum_MSOA_to_OA <- read.csv("Cumsum_MSOA_to_OA.csv",header = TRUE)
-Cumsum_Dis_to_Subdis <- read.csv("Cumsum_Dis_to_Subdis.csv",header = TRUE)
-
-Cumsum_LSOA_to_OA$Household_sales.1 <- as.numeric(as.character(Cumsum_LSOA_to_OA$Household_sales.1))
+# Load Data
+source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataCumsum.RData?raw=True")
+# or if saved locally
+# load("DataCumsum.RData")
 
 g1 <- ggplot()+
   geom_line(data = Cumsum_LSOA_to_OA,aes(x = Cumsum_LSOA_to_OA$Household_sales_abs,y = Cumsum_LSOA_to_OA$Household_sales.1, colour  = "HP_sales"),size=1) +
