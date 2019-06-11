@@ -63,11 +63,11 @@ sum(Leeds_LSOA$pop)
 
 cor.test(Leeds_LSOA$pop,Leeds_LSOA$pop_estimate)
 
-Leeds_LSOA$LSOA_area_error_MSOA <- Leeds_LSOA$pop_estimate - Leeds_LSOA$pop
+Leeds_LSOA$Areal_weight_error_MSOA_to_LSOA <- Leeds_LSOA$pop_estimate - Leeds_LSOA$pop
 
-table <- cbind(Leeds_LSOA$code, Leeds_LSOA$pop, Leeds_LSOA$pop_estimate,Leeds_LSOA$LSOA_area_error_MSOA)
+table <- cbind(Leeds_LSOA$code, Leeds_LSOA$pop, Leeds_LSOA$pop_estimate,Leeds_LSOA$Areal_weight_error_MSOA_to_LSOA)
 colnames(table) <- c("code", "pop", "estimate", "error")
-write.csv(table, file = "LSOA_areal_weight_error_MSOA.csv")
+write.csv(table, file = "Areal_weight_error_MSOA_to_LSOA.csv")
 
 #MSOA to OA
 ina <- intersect(Leeds_OA, Leeds_MSOA)
@@ -102,11 +102,11 @@ sum(Leeds_OA$pop)
 
 cor.test(Leeds_OA$pop,Leeds_OA$pop_estimate)
 
-Leeds_OA$OA_areal_weight_error_MSOA <- Leeds_OA$pop_estimate - Leeds_OA$pop
+Leeds_OA$Areal_weight_error_MSOA_to_OA <- Leeds_OA$pop_estimate - Leeds_OA$pop
 
-table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$pop_estimate,Leeds_OA$OA_areal_weight_error_MSOA)
+table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$pop_estimate,Leeds_OA$Areal_weight_error_MSOA_to_OA)
 colnames(table) <- c("code", "pop", "estimate", "error")
-write.csv(table, file = "OA_areal_weight_error_MSOA.csv")
+write.csv(table, file = "Areal_weight_error_MSOA_to_OA.csv")
 
 #LSOA to OA
 ina <- intersect(Leeds_OA, Leeds_LSOA)
@@ -141,11 +141,11 @@ sum(Leeds_OA$pop)
 
 cor.test(Leeds_OA$pop,Leeds_OA$pop_estimate)
 
-Leeds_OA$OA_areal_weight_error_LSOA <- Leeds_OA$pop_estimate - Leeds_OA$pop
+Leeds_OA$Areal_weight_error_LSOA_to_OA <- Leeds_OA$pop_estimate - Leeds_OA$pop
 
-table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$pop_estimate,Leeds_OA$OA_areal_weight_error_LSOA)
+table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$pop_estimate,Leeds_OA$Areal_weight_error_LSOA_to_OA)
 colnames(table) <- c("code", "pop", "estimate", "error")
-write.csv(table, file = "OA_areal_weight_error_LSOA.csv")
+write.csv(table, file = "Areal_weight_error_LSOA_to_OA.csv")
 
 ## Qingdao case
 #check the population and household count
@@ -187,9 +187,9 @@ sum(Subdistrict_Qingdao$Population)
 
 cor.test(Subdistrict_Qingdao$Population,Subdistrict_Qingdao$pop_estimate)
 
-Subdistrict_Qingdao$Subdis_areal_weight_error_dis <- Subdistrict_Qingdao$pop_estimate - Subdistrict_Qingdao$Population
+Subdistrict_Qingdao$Areal_weight_error_Dis_to_Subdis <- Subdistrict_Qingdao$pop_estimate - Subdistrict_Qingdao$Population
 
-table <- cbind(Subdistrict_Qingdao$Subdi_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$pop_estimate,Subdistrict_Qingdao$Subdis_areal_weight_error_dis)
+table <- cbind(Subdistrict_Qingdao$Subdi_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$pop_estimate,Subdistrict_Qingdao$Areal_weight_error_Dis_to_Subdis)
 colnames(table) <- c("code", "pop", "estimate", "error")
 
-write.csv(table, file = "Subdis_areal_weight_error_dis.csv")
+write.csv(table, file = "Areal_weight_error_Dis_to_Subdis.csv")

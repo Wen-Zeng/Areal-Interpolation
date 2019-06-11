@@ -51,12 +51,12 @@ sum(Leeds_LSOA$pop)
 
 cor.test(Leeds_LSOA$pop,Leeds_LSOA$Pop_estimate)
 
-Leeds_LSOA$LSOA_household_census_error_MSOA <- Leeds_LSOA$Pop_estimate - Leeds_LSOA$pop
+Leeds_LSOA$Household_census_error_MSOA_to_LSOA <- Leeds_LSOA$Pop_estimate - Leeds_LSOA$pop
 
-table <- cbind(Leeds_LSOA$code, Leeds_LSOA$pop, Leeds_LSOA$Pop_estimate,Leeds_LSOA$LSOA_household_census_error_MSOA)
+table <- cbind(Leeds_LSOA$code, Leeds_LSOA$pop, Leeds_LSOA$Pop_estimate,Leeds_LSOA$Household_census_error_MSOA_to_LSOA)
 colnames(table) <- c("code", "pop", "estimate", "error")
 
-write.csv(table, file = "LSOA_household_census_error_MSOA.csv")
+write.csv(table, file = "Household_census_error_MSOA_to_LSOA.csv")
 
 #MSOA to OA
 Leeds_MSOA$fig <- seq(1,length(Leeds_MSOA$Population),1)
@@ -82,12 +82,12 @@ sum(Leeds_OA$pop)
 
 cor.test(Leeds_OA$pop,Leeds_OA$Pop_estimate)
 
-Leeds_OA$OA_household_census_error_MSOA <- Leeds_OA$Pop_estimate - Leeds_OA$pop
+Leeds_OA$Household_census_error_MSOA_to_OA <- Leeds_OA$Pop_estimate - Leeds_OA$pop
 
-table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$Pop_estimate,Leeds_OA$OA_household_census_error_MSOA)
+table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$Pop_estimate,Leeds_OA$Household_census_error_MSOA_to_OA)
 colnames(table) <- c("code", "pop", "estimate", "error")
 
-write.csv(table, file = "OA_household_census_error_MSOA.csv")
+write.csv(table, file = "Household_census_error_MSOA_to_OA.csv")
 
 #LSOA to OA
 Leeds_LSOA$fig <- seq(1,length(Leeds_LSOA$pop),1)
@@ -113,12 +113,12 @@ sum(Leeds_OA$pop)
 
 cor.test(Leeds_OA$pop,Leeds_OA$Pop_estimate)
 
-Leeds_OA$OA_household_census_error_LSOA <- Leeds_OA$Pop_estimate - Leeds_OA$pop
+Leeds_OA$Household_census_error_LSOA_to_OA <- Leeds_OA$Pop_estimate - Leeds_OA$pop
 
-table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$Pop_estimate,Leeds_OA$OA_household_census_error_LSOA)
+table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$Pop_estimate,Leeds_OA$Household_census_error_LSOA_to_OA)
 colnames(table) <- c("code", "pop", "estimate", "error")
 
-write.csv(table, file = "OA_household_census_error_LSOA.csv")
+write.csv(table, file = "Household_census_error_LSOA_to_OA.csv")
 
 ##Qingdao case
 #check the population and household count
@@ -150,11 +150,11 @@ sum(Subdistrict_Qingdao$Population)
 
 cor.test(Subdistrict_Qingdao$Population,Subdistrict_Qingdao$Pop_estimate)
 
-Subdistrict_Qingdao$Subdis_household_error_census_dis <- Subdistrict_Qingdao$Pop_estimate - Subdistrict_Qingdao$Population
+Subdistrict_Qingdao$Household_census_error_Dis_to_Subdis <- Subdistrict_Qingdao$Pop_estimate - Subdistrict_Qingdao$Population
 
-table <- cbind(Subdistrict_Qingdao$Subdi_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$Pop_estimate,Subdistrict_Qingdao$Subdis_household_error_census_dis)
+table <- cbind(Subdistrict_Qingdao$Subdi_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$Pop_estimate,Subdistrict_Qingdao$Household_census_error_Dis_to_Subdis)
 colnames(table) <- c("code", "pop", "estimate", "error")
 
-write.csv(table, file = "Subdis_household_error_census_dis.csv", fileEncoding = "UTF-8")
+write.csv(table, file = "Household_census_error_Dis_to_Subdis.csv", fileEncoding = "UTF-8")
 
 

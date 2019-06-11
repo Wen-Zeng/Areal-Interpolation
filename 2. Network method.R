@@ -69,11 +69,11 @@ sum(Leeds_LSOA$Popu_estimate)
 sum(Leeds_LSOA$pop)
 cor.test(Leeds_LSOA$pop,Leeds_LSOA$Popu_estimate)
 
-Leeds_LSOA$LSOA_network_error_MSOA <- Leeds_LSOA$Popu_estimate - Leeds_LSOA$pop
+Leeds_LSOA$Network_error_MSOA_to_LSOA <- Leeds_LSOA$Popu_estimate - Leeds_LSOA$pop
 
-table <- cbind(Leeds_LSOA$code, Leeds_LSOA$pop, Leeds_LSOA$Popu_estimate,Leeds_LSOA$LSOA_network_error_MSOA)
+table <- cbind(Leeds_LSOA$code, Leeds_LSOA$pop, Leeds_LSOA$Popu_estimate,Leeds_LSOA$Network_error_MSOA_to_LSOA)
 colnames(table) <- c("code", "pop", "estimate", "error")
-write.csv(table, file = "LSOA_network_error_MSOA.csv")
+write.csv(table, file = "Network_error_MSOA_to_LSOA.csv")
 
 
 #MSOA to OA
@@ -100,11 +100,11 @@ sum(Leeds_OA$Popu_estimate)
 sum(Leeds_OA$pop)
 cor.test(Leeds_OA$pop,Leeds_OA$Popu_estimate)
 
-Leeds_OA$OA_network_error_MSOA <- Leeds_OA$Popu_estimate - Leeds_OA$pop
+Leeds_OA$Network_error_MSOA_to_OA <- Leeds_OA$Popu_estimate - Leeds_OA$pop
 
-table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$Popu_estimate,Leeds_OA$OA_network_error_MSOA)
+table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$Popu_estimate,Leeds_OA$Network_error_MSOA_to_OA)
 colnames(table) <- c("code", "pop", "estimate", "error")
-write.csv(table, file = "OA_network_error_MSOA.csv")
+write.csv(table, file = "Network_error_MSOA_to_OA.csv")
 
 
 #LSOA to OA
@@ -148,11 +148,11 @@ sum(Leeds_OA$Popu_estimate)
 sum(Leeds_OA$pop)
 cor.test(Leeds_OA$pop,Leeds_OA$Popu_estimate)
 
-Leeds_OA$OA_network_error_LSOA <- Leeds_OA$Popu_estimate - Leeds_OA$pop
+Leeds_OA$Network_error_LSOA_to_OA <- Leeds_OA$Popu_estimate - Leeds_OA$pop
 
-table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$Popu_estimate,Leeds_OA$OA_network_error_LSOA)
+table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$Popu_estimate,Leeds_OA$Network_error_LSOA_to_OA)
 colnames(table) <- c("code", "pop", "estimate", "error")
-write.csv(table, file = "OA_network_error_LSOA.csv")
+write.csv(table, file = "Network_error_LSOA_to_OA.csv")
 
 ##Qingdao case
 #check the population
@@ -203,8 +203,8 @@ sum(Subdistrict_Qingdao$Population)
 
 cor.test(Subdistrict_Qingdao$Population,Subdistrict_Qingdao$Popu_estimate)
 
-Subdistrict_Qingdao$Subdis_network_error_dis <- Subdistrict_Qingdao$Popu_estimate - Subdistrict_Qingdao$Population
+Subdistrict_Qingdao$Network_error_Dis_to_Subdis <- Subdistrict_Qingdao$Popu_estimate - Subdistrict_Qingdao$Population
 
-table <- cbind(Subdistrict_Qingdao$Dist_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$Popu_estimate,Subdistrict_Qingdao$Subdis_network_error_dis)
+table <- cbind(Subdistrict_Qingdao$Dist_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$Popu_estimate,Subdistrict_Qingdao$Network_error_Dis_to_Subdis)
 colnames(table) <- c("code", "pop", "estimate", "error")
-write.csv(table, file = "Subdis_network_error_dis.csv")
+write.csv(table, file = "Network_error_Dis_to_Subdis.csv")
