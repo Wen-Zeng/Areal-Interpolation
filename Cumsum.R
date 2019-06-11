@@ -14,6 +14,8 @@ library(car)
 library(Rmisc)
 library(repmis)
 
+# This code is for the Figure "The cumulative percentage of absolute error for the different interpolation approaches"
+
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataCumsum.RData?raw=True")
 # or if saved locally

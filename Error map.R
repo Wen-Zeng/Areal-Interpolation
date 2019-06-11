@@ -12,6 +12,8 @@ library(raster)
 library(sf)
 library(repmis)
 
+# This code is for the Figure "The error distributions of results for different interpolation approaches"
+
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataErrormap.RData?raw=True")
 # or if saved locally
@@ -37,7 +39,7 @@ tm_shape(Error_MSOA_to_LSOA) +
   tm_layout(frame = F,legend.show = FALSE)
 
 #LSOA to OA
- tm_shape(Error_LSOA_to_OA) +
+tm_shape(Error_LSOA_to_OA) +
   tm_fill(col='HP_census',,title='Error',palette='-RdBu', breaks = c(-1300,-100,-30,0,30,100,1650), legend.is.portrait=TRUE, midpoint = NA) + 
   tm_layout(frame = F,legend.show = FALSE)
 tm_shape(Error_LSOA_to_OA) +
@@ -85,5 +87,3 @@ tm_shape(Error_MSOA_to_OA) +
 
 ## The data in Qingdao case is not all open. 
 ## If you are interested, you can contact me. Email: Alvin_z@163.com
-
-

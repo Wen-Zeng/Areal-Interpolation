@@ -11,6 +11,7 @@ library(sf)
 library(repmis)
 library(GGally)
 
+# This code is for the Figure "The estimation error for different interpolation approaches in different cases"
 
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataHist.RData?raw=True")
