@@ -12,6 +12,7 @@ library(raster)
 library(sf)
 library(car)
 library(Rmisc)
+library(repmis)
 
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataCumsum.RData?raw=True")
