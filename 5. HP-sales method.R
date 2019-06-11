@@ -120,43 +120,41 @@ colnames(table) <- c("code", "pop", "estimate", "error")
 write.csv(table, file = "Household_sales_error_LSOA_to_OA.csv")
 
 ## Qingdao case
-ina <- st_intersection(Qingdao_house, District_Qingdao)
+ina <- intersect(Qingdao_house, District_Qingdao)
 ina$no. <- seq(1,length(ina$House_num),1)
-zone.list <- sort(unique(array(ina$District)))
+ina$code <- as.character(ina$District) #District no.
+zone.list <- sort(unique(array(ina$code)))
 ina$pop_hou <- 0
-for (i in 1:length(zone.list)) { 
-  item <- zone.list[i]
-  zone.set <- (ina$District == item) 
+for (item in zone.list) { 
+  zone.set <- (ina$code == item) 
   inano.list <- ina$no.[zone.set]
-  for (j in 1:length(inano.list)) {
-    item1 <- inano.list[j]
+  for (item1 in inano.list) {
     ina$pop_hou[which(ina$no. == item1)] <- (ina$Population[which(ina$no. == item1)])*(ina$House_num[which(ina$no. == item1)]/sum(ina$House_num[zone.set], na.rm = TRUE))
-    cat(i,":",j,"/",length(inano.list), "\t")
   }
 }
 
-sum(ina$pop_hou, na.rm = TRUE)
+sum(ina$pop_hou)
 sum(District_Qingdao$Population)
+sum(ina$House_num)
+sum(Qingdao_house$House_num)
 
-res <- st_intersection(ina, Subdistrict_Qingdao)
+res <- intersect(ina, Subdistrict_Qingdao)
 zone.list1 <- sort(unique(array(res$Subdistric))) 
-Subdistrict_Qingdao$Pop_estimate <- 0
-for (i in 1:length(zone.list1)) { 
-  item <- zone.list1[i]
+Subdistrict_Qingdao$Popu_estimate <- 0
+for (item in zone.list1) { 
   zone.set1 <- (res$Subdistric == item) 
-  Subdistrict_Qingdao$Pop_estimate[which(Subdistrict_Qingdao$Subdistric == item)] <- sum(ina$pop_hou[zone.set1], na.rm = TRUE)
-  cat(i,"/",length(zone.list1), "\t")
+  Subdistrict_Qingdao$Popu_estimate[which(Subdistrict_Qingdao$Subdistric == item)] <- sum(ina$pop_hou[zone.set1], na.rm = TRUE)
 }
 
-sum(Subdistrict_Qingdao$Pop_estimate)
+sum(Subdistrict_Qingdao$Popu_estimate)
 sum(Subdistrict_Qingdao$Population)
 
-cor.test(Subdistrict_Qingdao$Population,Subdistrict_Qingdao$Pop_estimate)
+cor.test(Subdistrict_Qingdao$Population,Subdistrict_Qingdao$Popu_estimate)
 
-Subdistrict_Qingdao$Household_sales_error_Dis_to_Subdis <- Subdistrict_Qingdao$Pop_estimate - Subdistrict_Qingdao$Population
+Subdistrict_Qingdao$Subdis_household_error_sales_dis <- Subdistrict_Qingdao$Popu_estimate - Subdistrict_Qingdao$Population
 
-table <- cbind(Subdistrict_Qingdao$Subdi_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$Pop_estimate,Subdistrict_Qingdao$Household_sales_error_Dis_to_Subdis)
+table <- cbind(Subdistrict_Qingdao$Subdi_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$Popu_estimate,Subdistrict_Qingdao$Subdis_household_error_sales_dis)
 colnames(table) <- c("code", "pop", "estimate", "error")
 
-write.csv(table, file = "Household_sales_error_Dis_to_Subdis.csv")
+write.csv(table, file = "Subdis_household_error_sales_dis.csv")
 
