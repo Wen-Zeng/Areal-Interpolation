@@ -16,12 +16,12 @@ library(raster)
 library(ggplot2)
 library(GGally)
 
-## Leeds case
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataAW.RData?raw=True")
 # or if saved locally
 # load("DataAW.RData")
 
+## Leeds case
 #check the population and household count
 sum(Leeds_MSOA$Population, na.rm = T)
 sum(Leeds_LSOA$pop, na.rm = T)
@@ -147,49 +147,6 @@ table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$pop_estimate,Leeds_OA$Areal
 colnames(table) <- c("code", "pop", "estimate", "error")
 write.csv(table, file = "Areal_weight_error_LSOA_to_OA.csv")
 
-## Qingdao case
-#check the population and household count
-sum(Subdistrict_Qingdao$Population, na.rm = T)
-sum(District_Qingdao$Population, na.rm = T)
-sum(Subdistrict_Qingdao$Household)
-sum(District_Qingdao$Household)
+## The data in Qingdao case is not all open. 
+## If you are interested, you can contact me. Email: Alvin_z@163.com
 
-#District to Subdistrict
-ina <- intersect(Subdistrict_Qingdao,District_Qingdao)
-ina$Area <- 0
-ina$Area <- area(ina)
-ina$no. <- seq(1,length(ina$Population.1),1)
-zone.list <- sort(unique(array(ina$District.2)))
-ina$pops <- 0
-ina$area_weight <- 0
-for (item in zone.list) { 
-  zone.set <- (ina$District.2 == item) 
-  inano.list <- ina$no.[zone.set]
-  for (item1 in inano.list) {
-    ina$area_weight[which(ina$no. == item1)] <- ina$Area[which(ina$no. == item1)]/sum(ina$Area[zone.set], na.rm = TRUE)
-  }
-  for (item2 in inano.list) {
-    ina$pops[which(ina$no. == item2)] = ina$Population.2[which(ina$no. == item2)]*ina$area_weight[which(ina$no. == item2)]
-  }
-}
-
-sum(ina$pops)
-sum(Subdistrict_Qingdao$Population)
-
-Subdistrict_Qingdao$pop_estimate <-0
-zone.list <- sort(unique(array(ina$Subdistric)))
-for (item in zone.list){
-  Subdistrict_Qingdao$pop_estimate[which(Subdistrict_Qingdao$Subdistric == item)] <- ina$pops[which(ina$Subdistric == item)]
-}
-
-sum(Subdistrict_Qingdao$pop_estimate)
-sum(Subdistrict_Qingdao$Population)
-
-cor.test(Subdistrict_Qingdao$Population,Subdistrict_Qingdao$pop_estimate)
-
-Subdistrict_Qingdao$Areal_weight_error_Dis_to_Subdis <- Subdistrict_Qingdao$pop_estimate - Subdistrict_Qingdao$Population
-
-table <- cbind(Subdistrict_Qingdao$Subdi_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$pop_estimate,Subdistrict_Qingdao$Areal_weight_error_Dis_to_Subdis)
-colnames(table) <- c("code", "pop", "estimate", "error")
-
-write.csv(table, file = "Areal_weight_error_Dis_to_Subdis.csv")

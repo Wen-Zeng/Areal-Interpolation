@@ -13,12 +13,12 @@ library(raster)
 library(sf)
 library(repmis)
 
-## Leeds case
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataHPcensus.RData?raw=True")
 # or if saved locally
 # load("DataHPcensus.RData")
 
+## Leeds case
 #check the population and household count
 sum(Leeds_MSOA$Population, na.rm = T)
 sum(Leeds_LSOA$pop, na.rm = T)
@@ -120,41 +120,5 @@ colnames(table) <- c("code", "pop", "estimate", "error")
 
 write.csv(table, file = "Household_census_error_LSOA_to_OA.csv")
 
-##Qingdao case
-#check the population and household count
-sum(Subdistrict_Qingdao$Population, na.rm = T)
-sum(District_Qingdao$Population, na.rm = T)
-sum(Subdistrict_Qingdao$Household)
-
-#District to subdistrict
-District_Qingdao$fig <- seq(1,length(District_Qingdao$Population),1)
-Subdistrict_Qingdao$no. <- seq(1,length(Subdistrict_Qingdao$Subdistric),1)
-px <- CRS(proj4string(Subdistrict_Qingdao)) 
-res <- SpatialPointsDataFrame(coordinates(Subdistrict_Qingdao),proj4string=px,data.frame(pop=Subdistrict_Qingdao$Population,hou_num=Subdistrict_Qingdao$Household,no.=Subdistrict_Qingdao$no.))
-ina <- intersect(res, District_Qingdao)
-ina$code <- as.character(ina$District) #District no.
-zone.list <- sort(unique(array(ina$code)))
-Subdistrict_Qingdao$Pop_estimate <- 0
-ina$pop_hou <- 0
-for (item in zone.list) { 
-  zone.set <- (ina$code == item) 
-  inano.list <- ina$no.[zone.set]
-  for (item1 in inano.list) {
-    ina$pop_hou[which(ina$no. == item1)] <- (ina$Population[item1])*(ina$hou_num[item1]/sum(ina$hou_num[zone.set], na.rm = TRUE))
-    Subdistrict_Qingdao$Pop_estimate[which(Subdistrict_Qingdao$no. == item1)] <- ina$pop_hou[which(ina$no. == item1)]
-  }
-}
-
-sum(Subdistrict_Qingdao$Pop_estimate)
-sum(Subdistrict_Qingdao$Population)
-
-cor.test(Subdistrict_Qingdao$Population,Subdistrict_Qingdao$Pop_estimate)
-
-Subdistrict_Qingdao$Household_census_error_Dis_to_Subdis <- Subdistrict_Qingdao$Pop_estimate - Subdistrict_Qingdao$Population
-
-table <- cbind(Subdistrict_Qingdao$Subdi_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$Pop_estimate,Subdistrict_Qingdao$Household_census_error_Dis_to_Subdis)
-colnames(table) <- c("code", "pop", "estimate", "error")
-
-write.csv(table, file = "Household_census_error_Dis_to_Subdis.csv", fileEncoding = "UTF-8")
-
-
+## The data in Qingdao case is not all open. 
+## If you are interested, you can contact me. Email: Alvin_z@163.com

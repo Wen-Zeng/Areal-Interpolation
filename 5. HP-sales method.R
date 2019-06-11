@@ -8,12 +8,12 @@ library(ggplot2)
 library(sf)
 library(repmis)
 
-## Leeds case
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataHPsales.RData?raw=True")
 # or if saved locally
 # load("DataHPsales.RData")
 
+## Leeds case
 #MSOA to LSOA 
 ina <- st_intersection(Leeds_house, Leeds_MSOA)
 ina$no. <- seq(1,length(ina$household),1)
@@ -119,42 +119,5 @@ colnames(table) <- c("code", "pop", "estimate", "error")
 
 write.csv(table, file = "Household_sales_error_LSOA_to_OA.csv")
 
-## Qingdao case
-ina <- intersect(Qingdao_house, District_Qingdao)
-ina$no. <- seq(1,length(ina$House_num),1)
-ina$code <- as.character(ina$District) #District no.
-zone.list <- sort(unique(array(ina$code)))
-ina$pop_hou <- 0
-for (item in zone.list) { 
-  zone.set <- (ina$code == item) 
-  inano.list <- ina$no.[zone.set]
-  for (item1 in inano.list) {
-    ina$pop_hou[which(ina$no. == item1)] <- (ina$Population[which(ina$no. == item1)])*(ina$House_num[which(ina$no. == item1)]/sum(ina$House_num[zone.set], na.rm = TRUE))
-  }
-}
-
-sum(ina$pop_hou)
-sum(District_Qingdao$Population)
-sum(ina$House_num)
-sum(Qingdao_house$House_num)
-
-res <- intersect(ina, Subdistrict_Qingdao)
-zone.list1 <- sort(unique(array(res$Subdistric))) 
-Subdistrict_Qingdao$Pop_estimate <- 0
-for (item in zone.list1) { 
-  zone.set1 <- (res$Subdistric == item) 
-  Subdistrict_Qingdao$Pop_estimate[which(Subdistrict_Qingdao$Subdistric == item)] <- sum(ina$pop_hou[zone.set1], na.rm = TRUE)
-}
-
-sum(Subdistrict_Qingdao$Pop_estimate)
-sum(Subdistrict_Qingdao$Population)
-
-cor.test(Subdistrict_Qingdao$Population,Subdistrict_Qingdao$Pop_estimate)
-
-Subdistrict_Qingdao$Household_sales_error_Dis_to_Subdis <- Subdistrict_Qingdao$Pop_estimate - Subdistrict_Qingdao$Population
-
-table <- cbind(Subdistrict_Qingdao$Subdi_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$Pop_estimate,Subdistrict_Qingdao$Household_sales_error_Dis_to_Subdis)
-colnames(table) <- c("code", "pop", "estimate", "error")
-
-write.csv(table, file = "Household_sales_error_Dis_to_Subdis.csv")
-
+## The data in Qingdao case is not all open. 
+## If you are interested, you can contact me. Email: Alvin_z@163.com

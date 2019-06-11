@@ -13,13 +13,13 @@ library(deldir)
 library(raster)
 library(sf)
 
-## Leeds case
 #Load data
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataNet.RData?raw=True")
 # or if saved locally
 # load("DataNet.RData")
 
+## Leeds case
 #check the population
 sum(Leeds_MSOA$Population, na.rm = T)
 sum(Leeds_LSOA$pop, na.rm = T)
@@ -154,57 +154,5 @@ table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$Popu_estimate,Leeds_OA$Netw
 colnames(table) <- c("code", "pop", "estimate", "error")
 write.csv(table, file = "Network_error_LSOA_to_OA.csv")
 
-##Qingdao case
-#check the population
-sum(Subdistrict_Qingdao$Population, na.rm = T)
-sum(District_Qingdao$Population, na.rm = T)
-
-par(mar=c(1,1,1,1))
-
-ina <-  st_intersection(Road_Qingdao, District_Qingdao)
-ina$Length <- st_length(ina)
-ina$Length <- as.numeric(ina$Length)
-ina$ID <- seq(1,length(ina$Length),1)
-zone.list <- sort(unique(array(ina$District)))
-ina$pop <- 0
-for (item in zone.list) { 
-  zone.set <- (ina$District == item) 
-  inano.list <- ina$ID[zone.set]
-  for (item1 in inano.list) {
-    ina$pop[which(ina$ID == item1)] <- (ina$Population[which(ina$ID == item1)])*(ina$Length[which(ina$ID == item1)]/sum(ina$Length[zone.set], na.rm = TRUE))
-    
-  }
-}
-
-sum(ina$pop)
-sum(District_Qingdao$Population)
-
-res <- st_intersection(ina, Subdistrict_Qingdao)
-res$RLength <- st_length(res)
-res$RLength <- as.numeric(res$RLength)
-res$RID <- seq(1,length(res$RLength),1)
-zone.list1 <- sort(unique(array(res$Subdistric)))
-Subdistrict_Qingdao$Popu_estimate <- 0
-for (item in zone.list1) { 
-  zone.set1 <- (res$Subdistric == item) 
-  resno.list <- res$RID[zone.set1]
-  pps <- 0
-  pp <- 0
-  for (item1 in resno.list) {
-    zone.set2 <- (res$ID == res$ID[which(res$RID == item1)])
-    pp <- (res$pop[which(res$RID == item1)])*(res$RLength[which(res$RID == item1)]/sum(res$RLength[zone.set2], na.rm = TRUE))
-    pps <- pps + pp    
-  }
-  Subdistrict_Qingdao$Popu_estimate[which(Subdistrict_Qingdao$Subdistric == item)] <- pps
-}
-
-sum(Subdistrict_Qingdao$Popu_estimate)
-sum(Subdistrict_Qingdao$Population)
-
-cor.test(Subdistrict_Qingdao$Population,Subdistrict_Qingdao$Popu_estimate)
-
-Subdistrict_Qingdao$Network_error_Dis_to_Subdis <- Subdistrict_Qingdao$Popu_estimate - Subdistrict_Qingdao$Population
-
-table <- cbind(Subdistrict_Qingdao$Dist_code, Subdistrict_Qingdao$Population, Subdistrict_Qingdao$Popu_estimate,Subdistrict_Qingdao$Network_error_Dis_to_Subdis)
-colnames(table) <- c("code", "pop", "estimate", "error")
-write.csv(table, file = "Network_error_Dis_to_Subdis.csv")
+## The data in Qingdao case is not all open. 
+## If you are interested, you can contact me. Email: Alvin_z@163.com
