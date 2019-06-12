@@ -43,11 +43,11 @@ res <- st_intersection(ina, Leeds_LSOA)
 res$RArea <- st_area(res)
 res$RArea <- as.numeric(res$RArea)
 res$RID <- seq(1,length(res$RArea),1)
-zone.list1 <- sort(unique(array(res$code.1)))
+zone.list1 <- sort(unique(array(res$code)))
 Leeds_LSOA$Pop_estimate <- 0
 for (i in 1:length(zone.list1)) { 
   item <- zone.list1[i]
-  zone.set1 <- (res$code.1 == item) 
+  zone.set1 <- (res$code == item) 
   resno.list <- res$RID[zone.set1]
   pps <- 0
   pp <- 0
@@ -79,11 +79,11 @@ res <- st_intersection(ina,Leeds_OA)
 res$RArea <- st_area(res)
 res$RArea <- as.numeric(res$RArea)
 res$RID <- seq(1,length(res$RArea),1)
-zone.list1 <- sort(unique(array(res$code.1)))
+zone.list1 <- sort(unique(array(res$code)))
 Leeds_OA$Pop_estimate <- 0
 for (i in 1:length(zone.list1)) { 
   item <- zone.list1[i]
-  zone.set1 <- (res$code.1 == item) 
+  zone.set1 <- (res$code == item) 
   resno.list <- res$RID[zone.set1]
   pps <- 0
   pp <- 0
@@ -115,11 +115,11 @@ ina <- st_intersection(SE_Building_Leeds, Leeds_LSOA)
 ina$Area <- st_area(ina)
 ina$Area <- as.numeric(ina$Area)
 ina$ID <- seq(1,length(ina$Area),1)
-zone.list <- sort(unique(array(ina$code.1)))
+zone.list <- sort(unique(array(ina$code)))
 ina$pop1 <- 0
 for (i in 1:length(zone.list)) { 
   item <- zone.list[i]
-  zone.set <- (ina$code.1 == item) 
+  zone.set <- (ina$code == item) 
   inano.list <- ina$ID[zone.set]
   for (j in 1:length(inano.list)) {
     item1 <- inano.list[j]
@@ -135,11 +135,11 @@ res <- st_intersection(ina,Leeds_OA)
 res$RArea <- st_area(res)
 res$RArea <- as.numeric(res$RArea)
 res$RID <- seq(1,length(res$RArea),1)
-zone.list1 <- sort(unique(array(res$code.2)))
+zone.list1 <- sort(unique(array(res$code.1)))
 Leeds_OA$Pop_estimate <- 0
 for (i in 1:length(zone.list1)) { 
   item <- zone.list1[i]
-  zone.set1 <- (res$code.2 == item) 
+  zone.set1 <- (res$code.1 == item) 
   resno.list <- res$RID[zone.set1]
   pps <- 0
   pp <- 0
