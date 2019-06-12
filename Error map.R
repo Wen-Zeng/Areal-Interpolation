@@ -84,5 +84,5 @@ tm_shape(Error_MSOA_to_OA) +
   tm_fill(col='HP_census',,title='Error',palette='-RdBu', breaks = c(-2100,-100,-30,0,30,100,4200), legend.is.portrait=TRUE, midpoint = NA) + 
   tm_layout(frame = F,legend.only=T)
 
-## The data in the Qingdao case is not all open, but the codes and methods are similiar with the Leeds case.
+## The data in the Qingdao case are not all open, but the codes and methods are similiar with the Leeds case.
 ## If you are interested, you can contact me. Email: Alvin_z@163.com

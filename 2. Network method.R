@@ -152,5 +152,5 @@ table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$Popu_estimate,Leeds_OA$Netw
 colnames(table) <- c("code", "pop", "estimate", "error")
 write.csv(table, file = "Network_error_LSOA_to_OA.csv")
 
-## The data in the Qingdao case is not all open, but the codes and methods are similiar with the Leeds case.
+## The data in the Qingdao case are not all open, but the codes and methods are similiar with the Leeds case.
 ## If you are interested, you can contact me. Email: Alvin_z@163.com
