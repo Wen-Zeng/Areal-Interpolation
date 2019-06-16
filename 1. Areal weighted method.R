@@ -25,17 +25,24 @@ sum(Leeds_LSOA$hou_num)
 sum(Leeds_OA$hou_num)
 
 #MSOA to LSOA
+# intersect the two layers
 ina <- intersect(Leeds_LSOA, Leeds_MSOA)
+# calculate the area of each intersected area
 ina$Area <- 0
 ina$Area <- area(ina)
+# generate a new field named"no." representing the serial number of each intersected section
+# each no. represents one intersected section in "ina"
 ina$no. <- seq(1,length(ina$pop),1)
+# summarise the codes in MSOA, different codes represent different MSOA areas
 zone.list <- sort(unique(array(ina$geo_code)))
 ina$pops <- 0
 ina$area_weight <- 0
+# calculate the population in each intersected zone
 for (item in zone.list) { 
   zone.set <- (ina$geo_code == item) 
   inano.list <- ina$no.[zone.set]
   for (item1 in inano.list) {
+    # calculate the area proportion of each intersected zone in the same MSOA
     ina$area_weight[which(ina$no. == item1)] <- ina$Area[which(ina$no. == item1)]/sum(ina$Area[zone.set], na.rm = TRUE)
   }
   for (item2 in inano.list) {
@@ -43,27 +50,31 @@ for (item in zone.list) {
   }
 }
 
+# check whether the total populaiton is preserved
 sum(ina$pops)
 sum(Leeds_MSOA$Population)
 
+# calculate the estimated population of the target zones
 Leeds_LSOA$pop_estimate <-0
 zone.list <- sort(unique(array(ina$code)))
 for (item in zone.list){
   Leeds_LSOA$pop_estimate[which(Leeds_LSOA$code == item)] <- ina$pops[which(ina$code == item)]
 }
 
+# check whether the total populaiton is preserved
 sum(Leeds_LSOA$pop_estimate)
 sum(Leeds_LSOA$pop)
 
-cor.test(Leeds_LSOA$pop,Leeds_LSOA$pop_estimate)
-
+# calculate the difference between estimated population and actual population
 Leeds_LSOA$Areal_weight_error_MSOA_to_LSOA <- Leeds_LSOA$pop_estimate - Leeds_LSOA$pop
 
+# convert the results into csv file
 table <- cbind(Leeds_LSOA$code, Leeds_LSOA$pop, Leeds_LSOA$pop_estimate,Leeds_LSOA$Areal_weight_error_MSOA_to_LSOA)
 colnames(table) <- c("code", "pop", "estimate", "error")
 write.csv(table, file = "Areal_weight_error_MSOA_to_LSOA.csv")
 
 #MSOA to OA
+# The route is similar to MSOA to LSOA
 ina <- intersect(Leeds_OA, Leeds_MSOA)
 ina$Area <- 0
 ina$Area <- area(ina)
@@ -94,8 +105,6 @@ for (item in zone.list){
 sum(Leeds_OA$pop_estimate)
 sum(Leeds_OA$pop)
 
-cor.test(Leeds_OA$pop,Leeds_OA$pop_estimate)
-
 Leeds_OA$Areal_weight_error_MSOA_to_OA <- Leeds_OA$pop_estimate - Leeds_OA$pop
 
 table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$pop_estimate,Leeds_OA$Areal_weight_error_MSOA_to_OA)
@@ -103,6 +112,7 @@ colnames(table) <- c("code", "pop", "estimate", "error")
 write.csv(table, file = "Areal_weight_error_MSOA_to_OA.csv")
 
 #LSOA to OA
+# The route is similar to MSOA to LSOA
 ina <- intersect(Leeds_OA, Leeds_LSOA)
 ina$Area <- 0
 ina$Area <- area(ina)
@@ -132,8 +142,6 @@ for (item in zone.list){
 
 sum(Leeds_OA$pop_estimate)
 sum(Leeds_OA$pop)
-
-cor.test(Leeds_OA$pop,Leeds_OA$pop_estimate)
 
 Leeds_OA$Areal_weight_error_LSOA_to_OA <- Leeds_OA$pop_estimate - Leeds_OA$pop
 
