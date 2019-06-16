@@ -1,3 +1,5 @@
+# This code is for the Cumulative Sum Figure "The cumulative percentage of absolute error for the different interpolation approaches"
+
 # Check and intstall packages
 if (!is.element("GISTools", installed.packages()))
   install.packages("GISTools", dep = T)
@@ -41,8 +43,6 @@ library(sf)
 library(car)
 library(Rmisc)
 library(repmis)
-
-# This code is for the Cumulative Sum Figure "The cumulative percentage of absolute error for the different interpolation approaches"
 
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataCumsum.RData?raw=True")

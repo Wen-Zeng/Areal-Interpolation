@@ -1,3 +1,5 @@
+# This code is for the Histogram Figure "The estimation error for different interpolation approaches in different cases"
+
 # Check and intstall packages
 if (!is.element("GISTools", installed.packages()))
   install.packages("GISTools", dep = T)
@@ -41,8 +43,6 @@ library(Rmisc)
 library(sf)
 library(repmis)
 library(GGally)
-
-# This code is for the Histogram Figure "The estimation error for different interpolation approaches in different cases"
 
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataHist.RData?raw=True")

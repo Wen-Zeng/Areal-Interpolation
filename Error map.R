@@ -1,3 +1,5 @@
+# This code is for the Error distribution Figure "The error distributions of results for different interpolation approaches"
+
 # Check and intstall packages
 if (!is.element("GISTools", installed.packages()))
   install.packages("GISTools", dep = T)
@@ -42,8 +44,6 @@ library(deldir)
 library(raster)
 library(sf)
 library(repmis)
-
-# This code is for the Error distribution Figure "The error distributions of results for different interpolation approaches"
 
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataErrormap.RData?raw=True")
