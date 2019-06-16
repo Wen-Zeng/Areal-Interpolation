@@ -1,11 +1,29 @@
+#### Check and load packages
+if (!is.element("GISTools", installed.packages()))
+  install.packages("GISTools", dep = T)
+if (!is.element("sp", installed.packages()))
+  install.packages("sp", dep = T)
+if (!is.element("rgdal", installed.packages()))
+  install.packages("rgdal", dep = T)
+if (!is.element("tmap", installed.packages()))
+  install.packages("tmap", dep = T)
+if (!is.element("scales", installed.packages()))
+  install.packages("scales", dep = T)
+if (!is.element("ggplot2", installed.packages()))
+  install.packages("ggplot2", dep = T)
+if (!is.element("raster", installed.packages()))
+  install.packages("raster", dep = T)
+if (!is.element("sf", installed.packages()))
+  install.packages("sf", dep = T)
+if (!is.element("repmis", installed.packages()))
+  install.packages("repmis", dep = T)
+# Load packages
 library(GISTools)
 library(sp)
 library(rgdal)
 library(tmap)
 library(scales)
 library(ggplot2)
-library(rtop)
-library(deldir)
 library(raster)
 library(sf)
 library(repmis)
@@ -15,7 +33,7 @@ source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataAW.
 # or if saved locally
 # load("DataAW.RData")
 
-## Leeds case
+### Leeds case
 #check the population and household count
 sum(Leeds_MSOA$Population, na.rm = T)
 sum(Leeds_LSOA$pop, na.rm = T)
@@ -24,7 +42,7 @@ sum(Leeds_MSOA$hou_num)
 sum(Leeds_LSOA$hou_num)
 sum(Leeds_OA$hou_num)
 
-#MSOA to LSOA
+### MSOA to LSOA
 # intersect the two layers
 ina <- intersect(Leeds_LSOA, Leeds_MSOA)
 # calculate the area of each intersected area
@@ -73,7 +91,7 @@ table <- cbind(Leeds_LSOA$code, Leeds_LSOA$pop, Leeds_LSOA$pop_estimate,Leeds_LS
 colnames(table) <- c("code", "pop", "estimate", "error")
 write.csv(table, file = "Areal_weight_error_MSOA_to_LSOA.csv")
 
-#MSOA to OA
+###MSOA to OA
 # The route is similar to MSOA to LSOA
 ina <- intersect(Leeds_OA, Leeds_MSOA)
 ina$Area <- 0
@@ -111,7 +129,7 @@ table <- cbind(Leeds_OA$code, Leeds_OA$pop, Leeds_OA$pop_estimate,Leeds_OA$Areal
 colnames(table) <- c("code", "pop", "estimate", "error")
 write.csv(table, file = "Areal_weight_error_MSOA_to_OA.csv")
 
-#LSOA to OA
+###LSOA to OA
 # The route is similar to MSOA to LSOA
 ina <- intersect(Leeds_OA, Leeds_LSOA)
 ina$Area <- 0

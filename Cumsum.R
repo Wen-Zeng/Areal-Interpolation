@@ -1,3 +1,33 @@
+# Check and intstall packages
+if (!is.element("GISTools", installed.packages()))
+  install.packages("GISTools", dep = T)
+if (!is.element("sp", installed.packages()))
+  install.packages("sp", dep = T)
+if (!is.element("rgdal", installed.packages()))
+  install.packages("rgdal", dep = T)
+if (!is.element("rgeos", installed.packages()))
+  install.packages("rgeos", dep = T)
+if (!is.element("tmap", installed.packages()))
+  install.packages("tmap", dep = T)
+if (!is.element("scales", installed.packages()))
+  install.packages("scales", dep = T)
+if (!is.element("ggplot2", installed.packages()))
+  install.packages("ggplot2", dep = T)
+if (!is.element("rtop", installed.packages()))
+  install.packages("rtop", dep = T)
+if (!is.element("deldir", installed.packages()))
+  install.packages("deldir", dep = T)
+if (!is.element("raster", installed.packages()))
+  install.packages("raster", dep = T)
+if (!is.element("sf", installed.packages()))
+  install.packages("sf", dep = T)
+if (!is.element("repmis", installed.packages()))
+  install.packages("repmis", dep = T)
+if (!is.element("Rmisc", installed.packages()))
+  install.packages("Rmisc", dep = T)
+if (!is.element("car", installed.packages()))
+  install.packages("car", dep = T)
+# load packages
 library(GISTools)
 library(sp)
 library(rgdal)
@@ -5,7 +35,6 @@ library(tmap)
 library(scales)
 library(ggplot2)
 library(rtop)
-library(automap)
 library(deldir)
 library(raster)
 library(sf)
@@ -13,13 +42,14 @@ library(car)
 library(Rmisc)
 library(repmis)
 
-# This code is for the Figure "The cumulative percentage of absolute error for the different interpolation approaches"
+# This code is for the Cumulative Sum Figure "The cumulative percentage of absolute error for the different interpolation approaches"
 
 # Load Data
 source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataCumsum.RData?raw=True")
 # or if saved locally
 # load("DataCumsum.RData")
 
+# LSOA to OA
 g1 <- ggplot()+
   geom_line(data = Cumsum_LSOA_to_OA,aes(x = Cumsum_LSOA_to_OA$Household_sales_abs,y = Cumsum_LSOA_to_OA$Household_sales.1, colour  = "HP_sales"),size=1) +
   geom_point(data = Cumsum_LSOA_to_OA,aes(x = Cumsum_LSOA_to_OA$Household_sales_abs,y = Cumsum_LSOA_to_OA$Household_sales.1, colour  = "HP_sales"),size=3,alpha = 0.2) +
@@ -47,7 +77,7 @@ g1 <- ggplot()+
   ggtitle('C. LSOA to OA in Leeds, UK') +
   guides(colour = guide_legend(nrow = 2)) 
 
-
+# MSOA to LSOA
 g2 <- ggplot()+
   geom_line(data = Cumsum_MSOA_to_LSOA,aes(x = Cumsum_MSOA_to_LSOA$Household_sales_abs,y = Cumsum_MSOA_to_LSOA$Household_sales.1, colour  = "HP_sales"),size=1) +
   geom_point(data = Cumsum_MSOA_to_LSOA,aes(x = Cumsum_MSOA_to_LSOA$Household_sales_abs,y = Cumsum_MSOA_to_LSOA$Household_sales.1, colour  = "HP_sales"),size=3,alpha = 0.2) +
@@ -75,6 +105,7 @@ g2 <- ggplot()+
   ggtitle('A. MSOA to LSOA in Leeds, UK') +
   guides(colour = guide_legend(nrow = 2))
 
+# MSOA to OA
 g3 <- ggplot()+
   geom_line(data = Cumsum_MSOA_to_OA,aes(x = Cumsum_MSOA_to_OA$Household_sales_abs,y = Cumsum_MSOA_to_OA$Household_sales.1, colour  = "HP_sales"),size=1) +
   geom_point(data = Cumsum_MSOA_to_OA,aes(x = Cumsum_MSOA_to_OA$Household_sales_abs,y = Cumsum_MSOA_to_OA$Household_sales.1, colour  = "HP_sales"),size=3,alpha = 0.2) +
@@ -102,7 +133,7 @@ g3 <- ggplot()+
   ggtitle('B. MSOA to OA in Leeds, UK') +
   guides(colour = guide_legend(nrow = 2))
 
-
+# District to Subdistrict
 g4 <- ggplot()+
   geom_line(data = Cumsum_Dis_to_Subdis,aes(x = Cumsum_Dis_to_Subdis$Household_sales_abs,y = Cumsum_Dis_to_Subdis$Household_sales.1, colour  = "HP_sales"),size=1) +
   geom_point(data = Cumsum_Dis_to_Subdis,aes(x = Cumsum_Dis_to_Subdis$Household_sales_abs,y = Cumsum_Dis_to_Subdis$Household_sales.1, colour  = "HP_sales"),size=3,alpha = 0.2) +
@@ -129,4 +160,5 @@ g4 <- ggplot()+
   ggtitle('D. District to Subdistrict in Qingdao, China') +
   guides(colour = guide_legend(nrow = 2))
 
+# draw the four plots on the same figure
 multiplot(g2, g1, g3, g4, cols = 2)
