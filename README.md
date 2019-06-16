@@ -1,6 +1,8 @@
 # Areal-Interpolation
 
-This repository contains data and code to reproduce the analysis described in a paper submitted in Computers, Environment and Urban Systems in June 2019.
+This repository contains data and code to reproduce the analysis described in a paper submitted in Computers, Environment and Urban Systems.
+
+You can download the .R files and run them in R or RStudio. It loads the .RData files and provides links to the .R files which describe how the data were created and assembled. You may need to install some of the packages but the code checks and does this. The script will load up the data (and different forms of ancillary data) and illustrate each of areal interpolation approaches described in the text.
 
 Five different areal interpolation methods were used: 1. Areal weighted method, 2. Network method, 3. Dasymetric method, 	4. HP-census method, 5. HP-sales method. The data used in these interpolation methods are respectively in: DataAW.RData, DataNet.RData, DataDasy.RData, DataHPcensus.RData, DataHPsales.RData. The R script used to capture the house sales data from the websites is in ScrapeWeb.R. The codes for three figures in the papers are in: Histogram.R, Cumsum.R and Error map.R. The data used in these figures are in: DataHist.RData, DataCumsum.RData and DataErrormap.RData. 
 
@@ -16,4 +18,9 @@ Wen Zeng12, Alexis Comber2
 # Abstract
 
 Fine-scale population estimates are needed to support both public and private planning. A number of areal interpolation methods have been proposed using different ancillary data. Many new forms of open and free to access data are available, and as yet little research has evaluated the use of household data in areal interpolation. This study evaluates the effectiveness of household data as ancillary information from two sources: formal census household counts and informal data on residential (house) sales from commercial websites, applied to 2 case studies with different contexts - Leeds in UK and Qingdao in China. A simple Household Percentage method (HP) is proposed to use household data as ancillary information for areal interpolation. The results show that household counts and proportions have a strong correlation with the population and provide a reliable source of ancillary information for guiding the areal interpolation of the population across different zones. A simple household Household percentage Percentage method (HP) yields significantly better results than other interpolation approaches using ancillary data, with lower errors, resulting in better population surfaces. Informal data on house sales and data describing other features captured from websites, frequently have detailed geographical and location information. These can be used to robustly support areal interpolation. This research also demonstrates that such data supports the application of a simpler suite of interpolation methods that make fewer assumptions about underlying spatial processes.
+
+# Acknowledgements
+
+This work was supported by the Natural Science Foundation of Shandong Province [grant numbers ZR201702170310]; the State Scholarship Fund of China Scholarship Council [grant numbers 201808370092]; and the Scientific Research Foundation of Shandong University of Science and Technology for Recruited Talents [grant numbers 2016RCJJ003]. All of the data analyses and mappings were undertaken in R 3.5.1, the open source software.
+
 
