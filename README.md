@@ -2,6 +2,8 @@
 
 This repository contains data and code to reproduce the analysis described in a paper submitted in Computers, Environment and Urban Systems in June 2019.
 
+Five different areal interpolation methods were used: 1. Areal weighted method, 2. Network method, 3. Dasymetric method, 	4. HP-census method, 5. HP-sales method. The data used in these interpolation methods are respectively in: DataAW.RData, DataNet.RData, DataDasy.RData, DataHPcensus.RData, DataHPsales.RData. The R script used to capture the house sales data from the websites is in ScrapeWeb.R. The codes for three figures in the papers are in: Histogram.R, Cumsum.R and Error map.R. The data used in these figures are in: DataHist.RData, DataCumsum.RData and DataErrormap.RData. 
+
 Please contact Wen Zeng alvin_z@163.com if you have any questions.
 
 # Paper title: Using household count as ancillary information for areal interpolation of population: comparing informal and formal data sources
