@@ -9,6 +9,7 @@ Please contact Wen Zeng alvin_z@163.com if you have any questions.
 # Paper title: Using household count as ancillary information for areal interpolation of population: comparing informal and formal data sources
 
 Wen Zeng12, Alexis Comber2
+
 1Shandong University of Science and Technology, Qingdao, P.R. China. Email: alvin_z@163.com, w.zeng1@leeds.ac.uk
 2School of Geography, University of Leeds, Leeds, LS2 9JT, UK. Email: a.comber@leeds.ac.uk
 
