@@ -52,18 +52,16 @@ source_data("https://github.com/Wen-Zeng/Areal-Interpolation/blob/master/DataHis
 # MSOA to LSOA
 h1 <- ggplot(MSOA_to_LSOA, aes(error)) +
   geom_histogram(fill="firebrick3", bins = 30, col = "white") +
-  facet_wrap( vars(method), ncol = 1)+ 
-  #geom_density() +
+  facet_wrap( vars(method), ncol = 5)+ 
   #ylab("Count") +
   #theme_minimal() +
-  #ylab("A. MSOA to LSOA, Leeds")+
-  theme(axis.text.x = element_text(angle = 90, hjust = 0.5, vjust = 0.5))+ 
-  ggtitle("A. MSOA to LSOA, Leeds") +
-  scale_x_continuous(breaks = c(-1500,-1000, -500, 0, 500, 1000,1500)) +
+  ylab("A. MSOA to LSOA, Leeds")+
+  #theme(axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.5))+ 
+  #ggtitle("A. MSOA to LSOA, Leeds") +
+  scale_x_continuous(breaks = 0) +
   theme(title = element_text(size = 8, face = "bold"))+
   theme(axis.line=element_blank(),
         #axis.text=element_blank(),
-        #strip.text.x = element_blank(),
         axis.ticks=element_blank(),
         axis.title = element_blank())+
   theme(axis.title.y = element_text(angle = 90, size = 8, hjust = 0.5, vjust = 0.5, face = "bold")) 
@@ -71,17 +69,15 @@ h1 <- ggplot(MSOA_to_LSOA, aes(error)) +
 # LSOA to OA
 h2 <- ggplot(LSOA_to_OA, aes(error)) +
   geom_histogram(fill="firebrick3", bins = 30, col = "white") +
-  facet_wrap( vars(method), ncol = 1)+
+  facet_wrap( vars(method), ncol = 5)+
   #theme_minimal() +
-  #ylab("B. LSOA to OA, Leeds")+
-  theme(axis.text.x = element_text(angle = 90, hjust = 0.5, vjust = 0.5))+ 
-  ggtitle("B. LSOA to OA, Leeds") +
+  ylab("B. LSOA to OA, Leeds")+
+  #ggtitle("B. LSOA to OA, Leeds") +
   #theme(title = element_text(size = 8, face = "bold"))+
-  scale_x_continuous(breaks = c(-1000, -500, -200,0, 200,500, 1000)) +
-  theme(title = element_text(size = 8, face = "bold"))+
+  scale_x_continuous(breaks = 0) +
   theme(axis.line=element_blank(),
         #axis.text=element_blank(),
-        #strip.text.x = element_blank(),
+        strip.text.x = element_blank(),
         axis.ticks=element_blank(),
         axis.title = element_blank())+
   theme(axis.title.y = element_text(angle = 90, size = 8, hjust = 0.5, vjust = 0.5, face = "bold"))
@@ -89,16 +85,15 @@ h2 <- ggplot(LSOA_to_OA, aes(error)) +
 # MSOA to OA
 h3 <- ggplot(MSOA_to_OA, aes(error)) +
   geom_histogram(fill="firebrick3", bins = 30, col = "white") +
-  facet_wrap( vars(method), ncol = 1)+
+  facet_wrap( vars(method), ncol = 5)+
   #theme_minimal() +
-  #ylab("C. MSOA to OA, Leeds")+
-  theme(axis.text.x = element_text(angle = 90, hjust = 0.5, vjust = 0.5))+
-  ggtitle("C. MSOA to OA, Leeds") +
+  ylab("C. MSOA to OA, Leeds")+
+  #ggtitle("C. MSOA to OA, Leeds") +
   #theme(title = element_text(size = 8, face = "bold"))+
-  scale_x_continuous(breaks = c(-1000, -500, -200,0, 200,500, 1000)) +
+  scale_x_continuous(breaks = 0) +
   theme(axis.line=element_blank(),
         #axis.text=element_blank(),
-        #strip.text.x = element_blank(),
+        strip.text.x = element_blank(),
         axis.ticks=element_blank(),
         axis.title = element_blank())+
  theme(axis.title.y = element_text(angle = 90, size = 8, hjust = 0.5, vjust = 0.5, face = "bold"))
@@ -106,19 +101,19 @@ h3 <- ggplot(MSOA_to_OA, aes(error)) +
 # District to Subdistrict
 h4 <- ggplot(Dis_to_Subdis, aes(error)) +
   geom_histogram(fill="firebrick3", bins = 30, col = "white") +
-  facet_wrap( vars(method), ncol = 1)+
+  facet_wrap( vars(method), ncol = 5)+
   #theme_minimal() +
-  #ylab("D. District to Subdistrict, Qingdao")+
-  theme(axis.text.x = element_text(angle = 90, hjust = 0.5, vjust = 0.5))+
-  ggtitle("D. District to Subdistrict, Qingdao") +
-  #scale_x_continuous(breaks = c(-50000, -10000, -1000,0, 1000,10000, 50000)) +
+  ylab("D. District to Subdistrict, Qingdao")+
+  #ggtitle("D. District to Subdistrict, Qingdao") +
+  scale_x_continuous(breaks = 0) +
   theme(title = element_text(size = 8, face = "bold"))+
   theme(axis.line=element_blank(),
         #axis.text=element_blank(),
         axis.ticks=element_blank(),
-        #strip.text.x = element_blank(),
+        strip.text.x = element_blank(),
         axis.title = element_blank())+
 theme(axis.title.y = element_text(angle = 90, size = 8, hjust = 0.5, vjust = 0.5, face = "bold"))
 
 # draw the four plots on the same figure
-multiplot(h1, h2, h3, h4, cols = 4)
+multiplot(h1, h2, h3, h4, cols = 1)
+
