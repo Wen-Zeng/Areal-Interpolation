@@ -1,6 +1,6 @@
 # Areal-Interpolation
 
-This repository contains data and code to reproduce the analysis described in a paper submitted in Computers, Environment and Urban Systems.
+This repository contains data and code to reproduce the analysis described in a paper published in Computers, Environment and Urban Systems. https://www.sciencedirect.com/science/article/pii/S0198971519303370?dgcid=author
 
 You can download the .R files and run them in R or RStudio. It loads the .RData files and provides links to the .R files which describe how the data were created and assembled. You may need to install some of the packages but the code checks and does this. The script will load up the data (and different forms of ancillary data) and illustrate each of areal interpolation approaches described in the text.
 
@@ -8,7 +8,7 @@ Five different areal interpolation methods were used: 1. Areal weighted method, 
 
 Please contact Wen Zeng alvin_z@163.com if you have any questions.
 
-# Paper title: Using household counts as ancillary information for areal interpolation of population: comparing formal and informal, online data sources
+# Paper title: Using household counts as ancillary information for areal interpolation of population: Comparing formal and informal, online data sources
 
 Wen Zeng12, Alexis Comber2
 
@@ -22,5 +22,4 @@ Fine-scale population estimates are needed to support both public and private pl
 # Acknowledgements
 
 This work was supported by the Natural Science Foundation of Shandong Province [grant numbers ZR201702170310]; the State Scholarship Fund of China Scholarship Council [grant numbers 201808370092]; and the Scientific Research Foundation of Shandong University of Science and Technology for Recruited Talents [grant numbers 2016RCJJ003]. All of the data analyses and mappings were undertaken in R 3.5.1, the open source software.
-
 
