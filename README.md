@@ -1,6 +1,6 @@
 # Areal-Interpolation
 
-This repository contains data and code to reproduce the analysis described in a paper published in Computers, Environment and Urban Systems. https://www.sciencedirect.com/science/article/pii/S0198971519303370?dgcid=author
+This repository contains data and code to reproduce the analysis described in a paper published in Computers, Environment and Urban Systems. https://www.sciencedirect.com/science/article/pii/S0198971519303370
 
 You can download the .R files and run them in R or RStudio. It loads the .RData files and provides links to the .R files which describe how the data were created and assembled. You may need to install some of the packages but the code checks and does this. The script will load up the data (and different forms of ancillary data) and illustrate each of areal interpolation approaches described in the text.
 
